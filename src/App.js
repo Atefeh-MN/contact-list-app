@@ -1,12 +1,14 @@
 
+import { Route } from 'react-router';
 import './App.css';
+import Layout from './Layout/Layout';
+import routes from './routes';
 
 function App() {
   return (
-    <div >
-      
-    Contact Manager
-    </div>
+    <Layout>
+      {routes.map((route)=><Route {...route}/>)}
+     </Layout> 
   );
 }
 
