@@ -6,7 +6,7 @@ import routes from './routes';
 
 function App() {
   return (
-    <Layout>
+    <Layout className='container'>
       {routes.map((route)=><Route {...route}/>)}
      </Layout> 
   );

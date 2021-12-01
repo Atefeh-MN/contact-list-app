@@ -1,10 +1,11 @@
-import AddNewContact from "../components/AddContact/AddNewContact";
+import ContactList from '../components/ContactsList/ContactList'
 
 
 const HomePage = () => {
     return (<>
-        <AddNewContact/>
-    </>    );
+       <ContactList />
+    </>
+    );
 }
  
 export default HomePage;

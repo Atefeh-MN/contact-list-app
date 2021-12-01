@@ -1,25 +1,44 @@
 import { useState } from 'react';
 import './addnewcontact.css'
+import { addContact } from '../../services/addContact';
 
-const AddNewContact = () => {
+const AddNewContact = ({history}) => {
     const [contact, setContact] = useState({ name: '', email: '' });
+   
     const ChangeHandler = (e) => {
-        console.log(e.target.value)
-             setContact({ ...contact, [e.target.name]: e.target.value })
+
+         setContact({ ...contact, [e.target.name]: e.target.value })
+    }
+    const postContactHandler = async () => {
+        try {
+            await addContact({ ...contact })
+            setContact({ name: '', email: '' })
+            history.push('/');
+        } catch (error) {
+            
+        }
+   
+    }
+    const submitForm = (e) => {
+        if (!contact.name || !contact.email) {
+            alert('all filleds are mandatory')
+            return;
+        }
+        e.preventDefault();
     }
     return (
-        <div className='formcontrol'>
+        <form onSubmit={submitForm} className='formcontrol'>
         <div className='form'>
             <label htmlFor="name">Name</label>
-            <input type="text" name='name' onChange={ChangeHandler} />
+            <input type="text" name='name' value={contact.name} onChange={ChangeHandler} />
         </div>
          <div className='form'>
             <label htmlFor="email">Email</label>
-            <input type="email" name='email' onChange={ChangeHandler} />
+            <input type="email" name='email'value={contact.email} onChange={ChangeHandler} />
         </div>
-            <button >Add New Contact</button>
-
-        </div>
+         <button type='submit'onClick={postContactHandler} >Add New Contact</button>
+        
+         </form>
     );
 }
  
