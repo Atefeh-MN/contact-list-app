@@ -32,7 +32,7 @@ const ContactList = ({match}) => {
         localStorage.setItem('contacts', JSON.stringify(contacts));
     }, [contacts])
     return (
-    <>
+        <section style={{ display:'flex',flexDirection:'column',alignItems:'center'}}>
             {contacts.map((contact) => {
                
                 return (
@@ -40,7 +40,7 @@ const ContactList = ({match}) => {
                         <Contact contact={contact} onDelete={deleteContactHandler} />
                         </Link>
             ) })}
-     </>       
+     </section>       
     );
 }
  

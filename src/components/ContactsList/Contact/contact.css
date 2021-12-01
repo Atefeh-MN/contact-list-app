@@ -1,33 +1,42 @@
 .contactContainer{
     display:flex;
-    justify-content: flex-start;
-    /* align-items: center; */
-    background-color:rgb(248, 244, 244);
-    padding: 5px 10px;
-    width: 80%;
-    margin: 5px auto;
+    justify-content: space-between;
+    align-items: center; 
+    background-color:#fff;
+    padding: 4px;
+    width: 30rem;
+    margin-top: 20px;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
-/* .profilePic{
-    width: 50px;
-    height: 50px;
-    background-color: #ccc;
-    border-radius: 50%;
-    padding: 3px;
-} */
 p{
-    font-size: 18px;
+    
     margin: 0 10px ;
 }
 img{  
-     width: 50px;
-    height: 50px;
-   
+     width: 30px;
+    height: 30px;
     border-radius: 50%;
  
 }
-.delete{
-    background-color: rgb(247, 53, 53);
-    color: wheat;
-    border: none;
+.delete {
+    
+    background: #fff;
+    border:1px solid rgb(247, 53, 53);
+    color: rgb(247, 53, 53);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    padding:3px 7px;
+}
+.edit{
+    
+     background: #fff;
+    border:1px solid rgb(127, 99, 248);
+    color: rgb(127, 99, 248);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    padding:3px 7px;
+    margin-right: 10px;
 }

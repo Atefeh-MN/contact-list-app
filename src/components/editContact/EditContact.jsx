@@ -1,24 +1,25 @@
-import { useState } from 'react';
-import './addnewcontact.css'
-import { addContact } from '../../services/addContact';
-import { Link } from 'react-router-dom';
 
-const AddNewContact = ({history}) => {
+import { useEffect, useState } from 'react';
+import '../AddContact/addnewcontact.css'
+import  updateContact  from '../../services/updateContact'
+import getOneContact from '../../services/getOneContact';
+
+
+const EditContact = ({history,match}) => {
     const [contact, setContact] = useState({ name: '', email: '' });
    
     const ChangeHandler = (e) => {
 
          setContact({ ...contact, [e.target.name]: e.target.value })
     }
-    const postContactHandler = async () => {
+    const editContactHandler = async () => {
+        const id = match.params.id;
         try {
-            await addContact({ ...contact })
-            setContact({ name: '', email: '' })
+            const { data } = await updateContact(id, { ...contact });
+             setContact({ name: '', email: '' })
             history.push('/');
-        } catch (error) {
-            
+        } catch (error) {      
         }
-   
     }
     const submitForm = (e) => {
         if (!contact.name || !contact.email) {
@@ -27,6 +28,18 @@ const AddNewContact = ({history}) => {
         }
         e.preventDefault();
     }
+    useEffect(() => {
+        const localFetch = async () => {
+            try {
+                const { data } = await getOneContact(match.params.id);
+                setContact({ name: data.name, email:data.email})
+            } catch (error) {
+                
+            }
+        }
+        localFetch();
+    },[])
+
     return (
         <form onSubmit={submitForm} className='formcontrol'>
         <div className='form'>
@@ -38,10 +51,9 @@ const AddNewContact = ({history}) => {
             <input type="email" name='email'value={contact.email} onChange={ChangeHandler} />
             </div>
             
-         <button className='button' type='submit'onClick={postContactHandler} >Add New Contact</button>
+         <button className='button' type='submit'onClick={editContactHandler} >Edit Contact</button>
         
          </form>
     );
 }
- 
-export default AddNewContact;
+export default EditContact;
