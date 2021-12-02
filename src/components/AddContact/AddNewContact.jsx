@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './addnewcontact.css'
 import { addContact } from '../../services/addContact';
-import { Link } from 'react-router-dom';
 
 const AddNewContact = ({history}) => {
     const [contact, setContact] = useState({ name: '', email: '' });
@@ -16,7 +15,6 @@ const AddNewContact = ({history}) => {
             setContact({ name: '', email: '' })
             history.push('/');
         } catch (error) {
-            
         }
    
     }

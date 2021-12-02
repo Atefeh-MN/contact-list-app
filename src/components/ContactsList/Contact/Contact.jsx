@@ -6,6 +6,7 @@ const Contact = ({ contact, onDelete }) => {
     const { name, email, id } = contact;
     return (
         <div className='contactContainer' key={id}>
+            <Link to={{ pathname: `/user/${contact.id}` , state:{ contact:contact} }} key={contact.id}>
             <div style={{display:"flex",alignItems:'center'}}>
             <img src={userImage} alt='user'  />
             <div className='user'>
@@ -13,6 +14,7 @@ const Contact = ({ contact, onDelete }) => {
                 <p>email: {email}</p>
             </div>
             </div>
+            </Link>
             <div>
             <Link to={`/edit/${id}`}>
                 <button className='edit'>Edit</button>

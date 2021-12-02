@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import './navigation.css';
 
 const Navigation = () => {
-    const items=[{to:'/',name:'ContactList',exact:true},{to:'/add',name:"Add Contact"}];
+    const items=[{to:'/',name:'Contact App',exact:true}];
     return (
         <nav>
             <ul>

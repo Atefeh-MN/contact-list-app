@@ -7,16 +7,15 @@ import getOneContact from '../../services/getOneContact';
 
 const EditContact = ({history,match}) => {
     const [contact, setContact] = useState({ name: '', email: '' });
+    const id = match.params.id;
    
     const ChangeHandler = (e) => {
 
          setContact({ ...contact, [e.target.name]: e.target.value })
     }
     const editContactHandler = async () => {
-        const id = match.params.id;
         try {
-            const { data } = await updateContact(id, { ...contact });
-             setContact({ name: '', email: '' })
+             await updateContact(id, { ...contact });
             history.push('/');
         } catch (error) {      
         }
@@ -31,14 +30,13 @@ const EditContact = ({history,match}) => {
     useEffect(() => {
         const localFetch = async () => {
             try {
-                const { data } = await getOneContact(match.params.id);
+                const { data } = await getOneContact(id);
                 setContact({ name: data.name, email:data.email})
-            } catch (error) {
-                
+            } catch (error) {    
             }
         }
         localFetch();
-    },[])
+    },[id])
 
     return (
         <form onSubmit={submitForm} className='formcontrol'>
